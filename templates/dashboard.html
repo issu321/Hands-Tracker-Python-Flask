@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Hands Tracker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+</head>
+<body class="dashboard-page">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-brand">
+            <i class="fas fa-hand-sparkles"></i>
+            <span>HANDS<br>TRACKER</span>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="/" class="nav-item">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="/dashboard" class="nav-item active">
+                <i class="fas fa-chart-line"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="/features" class="nav-item">
+                <i class="fas fa-star"></i>
+                <span>Features</span>
+            </a>
+            <a href="/contact" class="nav-item">
+                <i class="fas fa-envelope"></i>
+                <span>Contact</span>
+            </a>
+        </nav>
+        <div class="sidebar-footer">
+            <div class="status-indicator">
+                <span class="status-dot" id="serverStatus"></span>
+                <span class="status-text" id="serverStatusText">Connecting...</span>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Top Bar -->
+        <header class="top-bar">
+            <h1 class="page-title">
+                <i class="fas fa-satellite-dish"></i>
+                Live Tracking Dashboard
+            </h1>
+            <div class="top-actions">
+                <button class="btn-icon" id="toggleCamera" title="Toggle Camera">
+                    <i class="fas fa-video"></i>
+                </button>
+                <button class="btn-icon" id="toggleEffects" title="Toggle Effects">
+                    <i class="fas fa-magic"></i>
+                </button>
+                <button class="btn-icon" id="fullscreenBtn" title="Fullscreen">
+                    <i class="fas fa-expand"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Dashboard Grid -->
+        <div class="dashboard-grid">
+            <!-- Camera Feed -->
+            <div class="panel camera-panel">
+                <div class="panel-header">
+                    <h3><i class="fas fa-camera"></i> Camera Feed</h3>
+                    <div class="panel-badges">
+                        <span class="badge live" id="liveBadge">
+                            <span class="pulse"></span> LIVE
+                        </span>
+                        <span class="badge fps" id="fpsBadge">0 FPS</span>
+                    </div>
+                </div>
+                <div class="camera-container">
+                    <video id="webcam" autoplay playsinline muted></video>
+                    <canvas id="outputCanvas"></canvas>
+
+                    <!-- Loading Overlay -->
+                    <div class="camera-overlay" id="cameraOverlay">
+                        <div class="overlay-content">
+                            <i class="fas fa-spinner fa-spin"></i>
+                            <p>Initializing camera...</p>
+                            <p style="font-size:0.8rem;opacity:0.6;margin-top:8px;">Please allow camera access if prompted</p>
+                        </div>
+                    </div>
+
+                    <!-- Error Display -->
+                    <div class="camera-error" id="cameraError" style="display:none;">
+                        <div class="error-content">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <p id="errorMessage">Camera access denied</p>
+                            <button class="btn-primary" id="retryCamera">Retry Camera</button>
+                        </div>
+                    </div>
+
+                    <!-- Manual Start Fallback -->
+                    <div class="camera-manual" id="cameraManual" style="display:none;">
+                        <div class="manual-content">
+                            <i class="fas fa-camera"></i>
+                            <p>Camera is ready but not started</p>
+                            <button class="btn-primary" id="startCameraBtn">Start Camera</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Statistics Panel -->
+            <div class="panel stats-panel">
+                <div class="panel-header">
+                    <h3><i class="fas fa-chart-bar"></i> Live Statistics</h3>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-box">
+                        <div class="stat-icon"><i class="fas fa-tachometer-alt"></i></div>
+                        <div class="stat-info">
+                            <span class="stat-value" id="statFps">0</span>
+                            <span class="stat-label">FPS</span>
+                        </div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-icon"><i class="fas fa-hand-paper"></i></div>
+                        <div class="stat-info">
+                            <span class="stat-value" id="statHands">0</span>
+                            <span class="stat-label">Hands</span>
+                        </div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-icon"><i class="fas fa-smile"></i></div>
+                        <div class="stat-info">
+                            <span class="stat-value" id="statFaces">0</span>
+                            <span class="stat-label">Faces</span>
+                        </div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-icon"><i class="fas fa-fingerprint"></i></div>
+                        <div class="stat-info">
+                            <span class="stat-value" id="statFingers">0</span>
+                            <span class="stat-label">Fingers</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gesture Panel -->
+            <div class="panel gesture-panel">
+                <div class="panel-header">
+                    <h3><i class="fas fa-theater-masks"></i> Gesture Detection</h3>
+                </div>
+                <div class="gesture-display">
+                    <div class="gesture-icon" id="gestureIcon">
+                        <i class="fas fa-hand-paper"></i>
+                    </div>
+                    <div class="gesture-info">
+                        <span class="gesture-name" id="gestureName">No Gesture</span>
+                        <span class="gesture-confidence" id="gestureConfidence">Confidence: 0%</span>
+                    </div>
+                </div>
+                <div class="gesture-history" id="gestureHistory">
+                    <div class="history-item">Waiting for gestures...</div>
+                </div>
+            </div>
+
+            <!-- Smile Detection Panel -->
+            <div class="panel smile-panel">
+                <div class="panel-header">
+                    <h3><i class="fas fa-smile-beam"></i> Smile Detection</h3>
+                </div>
+                <div class="smile-display">
+                    <div class="smile-face" id="smileFace">
+                        <i class="fas fa-meh"></i>
+                    </div>
+                    <div class="smile-status">
+                        <span class="status-label">Status</span>
+                        <span class="status-value" id="smileStatus">Neutral</span>
+                    </div>
+                    <div class="smile-meter">
+                        <div class="meter-bar" id="smileMeter"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Handedness Panel -->
+            <div class="panel handedness-panel">
+                <div class="panel-header">
+                    <h3><i class="fas fa-hand-point-up"></i> Hand Details</h3>
+                </div>
+                <div class="hand-details">
+                    <div class="detail-row">
+                        <span class="detail-label">Handedness</span>
+                        <span class="detail-value" id="handednessValue">None</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Pinch Distance</span>
+                        <span class="detail-value" id="pinchValue">0 px</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Tracking Accuracy</span>
+                        <span class="detail-value" id="accuracyValue">0%</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Camera Status</span>
+                        <span class="detail-value" id="cameraStatus">Offline</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Analytics Panel -->
+            <div class="panel analytics-panel">
+                <div class="panel-header">
+                    <h3><i class="fas fa-chart-pie"></i> Session Analytics</h3>
+                </div>
+                <div class="analytics-content">
+                    <div class="analytics-row">
+                        <span class="analytics-label">Session Duration</span>
+                        <span class="analytics-value" id="sessionDuration">00:00</span>
+                    </div>
+                    <div class="analytics-row">
+                        <span class="analytics-label">Frames Processed</span>
+                        <span class="analytics-value" id="framesProcessed">0</span>
+                    </div>
+                    <div class="analytics-row">
+                        <span class="analytics-label">Smile Events</span>
+                        <span class="analytics-value" id="smileEvents">0</span>
+                    </div>
+                    <div class="analytics-row">
+                        <span class="analytics-label">Total Gestures</span>
+                        <span class="analytics-value" id="totalGestures">0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+</body>
+</html>

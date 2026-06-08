@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Features | Hands Tracker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body class="features-page">
+    <div class="bg-animation">
+        <div class="gradient-overlay"></div>
+    </div>
+
+    <nav class="main-nav">
+        <div class="nav-brand">
+            <i class="fas fa-hand-sparkles"></i>
+            <span>HANDS TRACKER</span>
+        </div>
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/dashboard">Dashboard</a>
+            <a href="/features" class="active">Features</a>
+            <a href="/contact">Contact</a>
+        </div>
+        <div class="nav-cta">
+            <a href="/dashboard" class="btn-glow">Launch App</a>
+        </div>
+    </nav>
+
+    <section class="features-detail">
+        <div class="section-header">
+            <h1 class="section-title">Complete Feature List</h1>
+            <p class="section-subtitle">Everything you need for real-time hand and face tracking</p>
+        </div>
+
+        <div class="features-list">
+            <div class="feature-detail-card glass">
+                <div class="feature-number">01</div>
+                <div class="feature-content">
+                    <h3><i class="fas fa-hand-pointer"></i> Hand Tracking</h3>
+                    <ul>
+                        <li>Single hand detection with 21 precise landmarks</li>
+                        <li>Multi-hand detection (up to 2 hands simultaneously)</li>
+                        <li>Real-time landmark tracking at 60 FPS target</li>
+                        <li>Sub-pixel accuracy for smooth movement</li>
+                        <li>3D coordinate extraction (x, y, z)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="feature-detail-card glass">
+                <div class="feature-number">02</div>
+                <div class="feature-content">
+                    <h3><i class="fas fa-theater-masks"></i> Gesture Recognition</h3>
+                    <ul>
+                        <li><strong>Open Palm</strong> - All fingers extended</li>
+                        <li><strong>Closed Fist</strong> - All fingers curled</li>
+                        <li><strong>Peace Sign</strong> - Index and middle fingers up</li>
+                        <li><strong>Thumbs Up</strong> - Only thumb extended upward</li>
+                        <li><strong>Pointing Finger</strong> - Only index finger extended</li>
+                        <li><strong>Rock Gesture</strong> - Index and pinky extended</li>
+                        <li><strong>Victory Gesture</strong> - V-sign with confidence</li>
+                        <li><strong>Pinch</strong> - Thumb and index close together</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="feature-detail-card glass">
+                <div class="feature-number">03</div>
+                <div class="feature-content">
+                    <h3><i class="fas fa-smile"></i> Face Tracking</h3>
+                    <ul>
+                        <li>468-point face mesh detection</li>
+                        <li>Real-time face tracking with bounding box</li>
+                        <li>Head position and orientation detection</li>
+                        <li>Face confidence scoring</li>
+                        <li>Eye iris tracking with refine landmarks</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="feature-detail-card glass">
+                <div class="feature-number">04</div>
+                <div class="feature-content">
+                    <h3><i class="fas fa-smile-beam"></i> Smile & Blink Detection</h3>
+                    <ul>
+                        <li>Real-time smile status (Smiling / Neutral / Not Smiling)</li>
+                        <li>Confidence score for smile detection</li>
+                        <li>Eye blink detection with event counting</li>
+                        <li>Left and right eye state tracking</li>
+                        <li>Mouth aspect ratio analysis</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="feature-detail-card glass">
+                <div class="feature-number">05</div>
+                <div class="feature-content">
+                    <h3><i class="fas fa-bolt"></i> Visual Effects</h3>
+                    <ul>
+                        <li>Rainbow light trails on hand movement</li>
+                        <li>Neon laser connections between landmarks</li>
+                        <li>Finger beam effects at fingertips</li>
+                        <li>Particle explosion effects on gestures</li>
+                        <li>Glow trails and motion blur</li>
+                        <li>Cyber hologram face overlay</li>
+                        <li>Energy pulse aura around hands</li>
+                        <li>Interactive visual feedback</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="feature-detail-card glass">
+                <div class="feature-number">06</div>
+                <div class="feature-content">
+                    <h3><i class="fas fa-chart-line"></i> Dashboard & Analytics</h3>
+                    <ul>
+                        <li>Real-time FPS monitoring</li>
+                        <li>Live hand and face count</li>
+                        <li>Current gesture display with icon</li>
+                        <li>Smile status with animated meter</li>
+                        <li>Gesture history log</li>
+                        <li>Session duration tracking</li>
+                        <li>Detection statistics</li>
+                        <li>System status indicators</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="feature-detail-card glass">
+                <div class="feature-number">07</div>
+                <div class="feature-content">
+                    <h3><i class="fas fa-shield-alt"></i> Error Handling</h3>
+                    <ul>
+                        <li>No camera detection with friendly message</li>
+                        <li>Camera busy state handling</li>
+                        <li>Permission denied guidance</li>
+                        <li>MediaPipe failure recovery</li>
+                        <li>OpenCV error management</li>
+                        <li>Detection failure graceful degradation</li>
+                        <li>Automatic retry mechanisms</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="feature-detail-card glass">
+                <div class="feature-number">08</div>
+                <div class="feature-content">
+                    <h3><i class="fas fa-rocket"></i> Performance</h3>
+                    <ul>
+                        <li>60 FPS target with optimized processing</li>
+                        <li>Smooth tracking with low latency</li>
+                        <li>Stable detection across lighting conditions</li>
+                        <li>Optimized CPU usage</li>
+                        <li>Frame skipping for performance</li>
+                        <li>Adaptive quality based on hardware</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <i class="fas fa-hand-sparkles"></i>
+                <span>HANDS TRACKER</span>
+            </div>
+            <p class="footer-copy">
+                &copy; 2026 Hands Tracker. Developer: issu321. 
+                <a href="https://github.com/issu321/Hands-Tracker-Python-Flask" target="_blank">GitHub</a>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

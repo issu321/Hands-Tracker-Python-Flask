@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hands Tracker | Real-Time AI Hand & Face Tracking</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body class="home-page">
+    <!-- Animated Background -->
+    <div class="bg-animation">
+        <div class="particles-container" id="particles"></div>
+        <div class="gradient-overlay"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <div class="nav-brand">
+            <i class="fas fa-hand-sparkles"></i>
+            <span>HANDS TRACKER</span>
+        </div>
+        <div class="nav-links">
+            <a href="/" class="active">Home</a>
+            <a href="/dashboard">Dashboard</a>
+            <a href="/features">Features</a>
+            <a href="/contact">Contact</a>
+        </div>
+        <div class="nav-cta">
+            <a href="/dashboard" class="btn-glow">Launch App <i class="fas fa-rocket"></i></a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="pulse-dot"></span>
+                <span>AI-Powered Real-Time Tracking</span>
+            </div>
+            <h1 class="hero-title">
+                <span class="gradient-text">Next Generation</span>
+                <br>Hand & Face Tracking
+            </h1>
+            <p class="hero-subtitle">
+                Experience futuristic computer vision with MediaPipe, OpenCV, and Flask. 
+                Real-time gesture recognition, smile detection, and cyberpunk visual effects.
+            </p>
+            <div class="hero-buttons">
+                <a href="/dashboard" class="btn-primary">
+                    <i class="fas fa-play"></i> Start Tracking
+                </a>
+                <a href="https://github.com/issu321/Hands-Tracker-Python-Flask" target="_blank" class="btn-secondary">
+                    <i class="fab fa-github"></i> View on GitHub
+                </a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number">60</span>
+                    <span class="stat-label">FPS Target</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">21</span>
+                    <span class="stat-label">Hand Landmarks</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">468</span>
+                    <span class="stat-label">Face Landmarks</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">8+</span>
+                    <span class="stat-label">Gestures</span>
+                </div>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="hologram-container">
+                <div class="hologram-ring ring-1"></div>
+                <div class="hologram-ring ring-2"></div>
+                <div class="hologram-ring ring-3"></div>
+                <div class="hologram-hand">
+                    <i class="fas fa-hand-paper"></i>
+                </div>
+                <div class="hologram-particles"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feature Cards -->
+    <section class="features-section">
+        <div class="section-header">
+            <h2 class="section-title">Core Features</h2>
+            <p class="section-subtitle">Powered by cutting-edge AI and computer vision</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card glass">
+                <div class="feature-icon">
+                    <i class="fas fa-hand-pointer"></i>
+                </div>
+                <h3>Hand Tracking</h3>
+                <p>Real-time detection of 21 hand landmarks with sub-pixel accuracy. Supports single and multi-hand tracking.</p>
+                <div class="feature-tags">
+                    <span class="tag">21 Landmarks</span>
+                    <span class="tag">Multi-Hand</span>
+                </div>
+            </div>
+            <div class="feature-card glass">
+                <div class="feature-icon">
+                    <i class="fas fa-theater-masks"></i>
+                </div>
+                <h3>Gesture Recognition</h3>
+                <p>Instantly recognize Open Palm, Fist, Peace, Thumbs Up, Pinch, Pointing, Rock, and Victory gestures.</p>
+                <div class="feature-tags">
+                    <span class="tag">8+ Gestures</span>
+                    <span class="tag">Real-Time</span>
+                </div>
+            </div>
+            <div class="feature-card glass">
+                <div class="feature-icon">
+                    <i class="fas fa-smile"></i>
+                </div>
+                <h3>Face Mesh & Smile</h3>
+                <p>468-point face mesh tracking with smile detection, eye blink detection, and head position analysis.</p>
+                <div class="feature-tags">
+                    <span class="tag">468 Points</span>
+                    <span class="tag">Blink Detect</span>
+                </div>
+            </div>
+            <div class="feature-card glass">
+                <div class="feature-icon">
+                    <i class="fas fa-bolt"></i>
+                </div>
+                <h3>Cyberpunk Effects</h3>
+                <p>Rainbow light trails, neon laser connections, particle effects, glow auras, and hologram overlays.</p>
+                <div class="feature-tags">
+                    <span class="tag">Neon</span>
+                    <span class="tag">Particles</span>
+                </div>
+            </div>
+            <div class="feature-card glass">
+                <div class="feature-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h3>Live Analytics</h3>
+                <p>Real-time dashboard with FPS counter, gesture history, smile events, and session statistics.</p>
+                <div class="feature-tags">
+                    <span class="tag">Live Stats</span>
+                    <span class="tag">History</span>
+                </div>
+            </div>
+            <div class="feature-card glass">
+                <div class="feature-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3>Production Ready</h3>
+                <p>Robust error handling, camera permission management, and cross-platform compatibility out of the box.</p>
+                <div class="feature-tags">
+                    <span class="tag">Error Handling</span>
+                    <span class="tag">Cross-Platform</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology Stack -->
+    <section class="tech-section">
+        <div class="section-header">
+            <h2 class="section-title">Technology Stack</h2>
+            <p class="section-subtitle">Built with industry-standard tools</p>
+        </div>
+        <div class="tech-grid">
+            <div class="tech-item">
+                <i class="fab fa-python"></i>
+                <span>Python</span>
+            </div>
+            <div class="tech-item">
+                <i class="fas fa-flask"></i>
+                <span>Flask</span>
+            </div>
+            <div class="tech-item">
+                <i class="fas fa-eye"></i>
+                <span>OpenCV</span>
+            </div>
+            <div class="tech-item">
+                <i class="fas fa-brain"></i>
+                <span>MediaPipe</span>
+            </div>
+            <div class="tech-item">
+                <i class="fas fa-calculator"></i>
+                <span>NumPy</span>
+            </div>
+            <div class="tech-item">
+                <i class="fab fa-js"></i>
+                <span>JavaScript</span>
+            </div>
+            <div class="tech-item">
+                <i class="fab fa-html5"></i>
+                <span>HTML5</span>
+            </div>
+            <div class="tech-item">
+                <i class="fab fa-css3-alt"></i>
+                <span>CSS3</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works">
+        <div class="section-header">
+            <h2 class="section-title">How It Works</h2>
+            <p class="section-subtitle">Three simple steps to start tracking</p>
+        </div>
+        <div class="steps-container">
+            <div class="step-card">
+                <div class="step-number">01</div>
+                <div class="step-icon"><i class="fas fa-camera"></i></div>
+                <h3>Grant Camera Access</h3>
+                <p>Allow browser camera permission. The webcam opens automatically with no extra clicks.</p>
+            </div>
+            <div class="step-connector"></div>
+            <div class="step-card">
+                <div class="step-number">02</div>
+                <div class="step-icon"><i class="fas fa-satellite-dish"></i></div>
+                <h3>AI Processing</h3>
+                <p>Frames are processed in real-time by MediaPipe Hands and Face Mesh on the server.</p>
+            </div>
+            <div class="step-connector"></div>
+            <div class="step-card">
+                <div class="step-number">03</div>
+                <div class="step-icon"><i class="fas fa-magic"></i></div>
+                <h3>Visual Feedback</h3>
+                <p>See cyberpunk overlays, gesture names, smile status, and live statistics instantly.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Live Demo Preview -->
+    <section class="demo-section">
+        <div class="demo-content">
+            <h2 class="section-title">Live Demo Preview</h2>
+            <p class="section-subtitle">See the dashboard in action</p>
+            <div class="demo-frame">
+                <div class="demo-header">
+                    <div class="demo-dots">
+                        <span></span><span></span><span></span>
+                    </div>
+                    <span class="demo-title">Dashboard Preview</span>
+                </div>
+                <div class="demo-body">
+                    <div class="demo-sidebar">
+                        <div class="demo-nav-item active"><i class="fas fa-home"></i> Home</div>
+                        <div class="demo-nav-item"><i class="fas fa-chart-line"></i> Dashboard</div>
+                        <div class="demo-nav-item"><i class="fas fa-star"></i> Features</div>
+                        <div class="demo-nav-item"><i class="fas fa-envelope"></i> Contact</div>
+                    </div>
+                    <div class="demo-main">
+                        <div class="demo-cam">
+                            <div class="cam-placeholder">
+                                <i class="fas fa-hand-sparkles"></i>
+                                <span>Camera Feed with AI Overlay</span>
+                            </div>
+                        </div>
+                        <div class="demo-stats">
+                            <div class="demo-stat"><span>FPS</span><span class="value">60</span></div>
+                            <div class="demo-stat"><span>Hands</span><span class="value">2</span></div>
+                            <div class="demo-stat"><span>Faces</span><span class="value">1</span></div>
+                            <div class="demo-stat"><span>Gesture</span><span class="value">Peace</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="demo-cta">
+                <a href="/dashboard" class="btn-primary btn-large">
+                    <i class="fas fa-play-circle"></i> Launch Full Dashboard
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- GitHub Section -->
+    <section class="github-section">
+        <div class="github-content">
+            <i class="fab fa-github github-icon"></i>
+            <h2>Open Source on GitHub</h2>
+            <p>Contribute, fork, or star the project. Built by the community for the community.</p>
+            <div class="github-buttons">
+                <a href="https://github.com/issu321/Hands-Tracker-Python-Flask" target="_blank" class="btn-github">
+                    <i class="fab fa-github"></i> View Repository
+                </a>
+                <a href="https://github.com/issu321" target="_blank" class="btn-github-outline">
+                    <i class="fas fa-user"></i> Follow @issu321
+                </a>
+            </div>
+            <div class="github-stats">
+                <div><i class="fas fa-star"></i> Star</div>
+                <div><i class="fas fa-code-branch"></i> Fork</div>
+                <div><i class="fas fa-bug"></i> Issues</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="section-header">
+            <h2 class="section-title">Get In Touch</h2>
+            <p class="section-subtitle">Questions or feedback? Reach out.</p>
+        </div>
+        <div class="contact-grid">
+            <div class="contact-card glass">
+                <i class="fab fa-github"></i>
+                <h3>GitHub</h3>
+                <p>github.com/issu321</p>
+                <a href="https://github.com/issu321" target="_blank">Visit Profile</a>
+            </div>
+            <div class="contact-card glass">
+                <i class="fas fa-envelope"></i>
+                <h3>Repository</h3>
+                <p>Hands-Tracker-Python-Flask</p>
+                <a href="https://github.com/issu321/Hands-Tracker-Python-Flask" target="_blank">View Repo</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <i class="fas fa-hand-sparkles"></i>
+                <span>HANDS TRACKER</span>
+            </div>
+            <p class="footer-text">Real-time AI hand and face tracking powered by MediaPipe & Flask.</p>
+            <div class="footer-links">
+                <a href="/">Home</a>
+                <a href="/dashboard">Dashboard</a>
+                <a href="/features">Features</a>
+                <a href="/contact">Contact</a>
+            </div>
+            <p class="footer-copy">
+                &copy; 2026 Hands Tracker. Developer: issu321. 
+                <a href="https://github.com/issu321/Hands-Tracker-Python-Flask" target="_blank">GitHub</a>
+            </p>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
