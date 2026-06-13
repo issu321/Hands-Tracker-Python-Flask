@@ -111,29 +111,16 @@ if /i "%CREATE_SHORTCUT%"=="y" (
     set "SHORTCUT_PATH=%USERPROFILE%\Desktop\Hands Tracker.lnk"
     powershell -Command "$WshShell = New-Object -ComObject WScript.Shell; $Shortcut = $WshShell.CreateShortcut('%SHORTCUT_PATH%'); $Shortcut.TargetPath = '%SCRIPT_DIR%start.bat'; $Shortcut.WorkingDirectory = '%SCRIPT_DIR%'; $Shortcut.IconLocation = 'cmd.exe,0'; $Shortcut.Save()"
     echo [OK] Desktop shortcut created
-)
+
 
 echo.
 echo ========================================
 echo   Installation Complete!
 echo ========================================
 echo.
-echo To start the application:
-echo   Double-click start.bat
-echo.
-echo Or manually:
-echo   venv\Scriptsctivate.bat
-echo   python app.py
-echo.
-echo Then open http://localhost:5000 in your browser
+echo Launching...(Please-Wait)
+python app.py
 echo.
 
-REM Auto-start if requested
-set /p START_NOW="Start the application now? (y/n): "
-if /i "%START_NOW%"=="y" (
-    echo [INFO] Starting Hands Tracker...
-    cd /d "%SCRIPT_DIR%"
-    python app.py
-)
 
 pause
