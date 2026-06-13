@@ -66,7 +66,7 @@ echo [OK] Virtual environment created
 
 REM Activate virtual environment
 echo [INFO] Activating virtual environment...
-call "%VENV_DIR%\Scriptsctivate.bat"
+call "%VENV_DIR%\Scripts ctivate.bat"
 
 REM Upgrade pip
 echo [INFO] Upgrading pip...
@@ -95,7 +95,7 @@ echo [INFO] Creating start.bat...
     echo title Hands Tracker
 color 0B
     echo set "SCRIPT_DIR=%%~dp0"
-    echo call "%%SCRIPT_DIR%%venv\Scriptsctivate.bat"
+    echo call "%%SCRIPT_DIR%%venv\Scripts ctivate.bat"
     echo cd /d "%%SCRIPT_DIR%%"
     echo echo Starting Hands Tracker...
     echo echo Open http://localhost:5000 in your browser
@@ -103,24 +103,19 @@ color 0B
     echo pause
 ) > "%SCRIPT_DIR%start.bat"
 
-REM Create desktop shortcut (optional)
-echo.
-set /p CREATE_SHORTCUT="Create desktop shortcut? (y/n): "
-if /i "%CREATE_SHORTCUT%"=="y" (
-    echo [INFO] Creating desktop shortcut...
-    set "SHORTCUT_PATH=%USERPROFILE%\Desktop\Hands Tracker.lnk"
-    powershell -Command "$WshShell = New-Object -ComObject WScript.Shell; $Shortcut = $WshShell.CreateShortcut('%SHORTCUT_PATH%'); $Shortcut.TargetPath = '%SCRIPT_DIR%start.bat'; $Shortcut.WorkingDirectory = '%SCRIPT_DIR%'; $Shortcut.IconLocation = 'cmd.exe,0'; $Shortcut.Save()"
-    echo [OK] Desktop shortcut created
-
-
 echo.
 echo ========================================
 echo   Installation Complete!
 echo ========================================
 echo.
-echo Launching...(Please-Wait)
-python app.py
 echo.
 
+REM Auto-start if requested
+set /p START_NOW="Start the application now? (y/n): "
+if /i "%START_NOW%"=="y" (
+    echo [INFO] Starting Hands Tracker...
+    cd /d "%SCRIPT_DIR%"
+    python app.py
+)
 
 pause
